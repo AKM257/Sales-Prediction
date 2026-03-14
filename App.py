@@ -48,7 +48,7 @@ with st.sidebar:
     st.metric("R² (actual sales)",  f"{stats['r2_actual']:.4f}")
     st.metric("RMSE (actual sales)", f"{stats['rmse_actual']:,.0f} €")
     st.metric("MAE (actual sales)",  f"{stats['mae_actual']:,.0f} €")
-    st.metric("MAPE",               str(int({stats['mape']:.2f})/100000)+ '%')
+    st.metric("MAPE",               str(int({stats['mape']})/100000)+ '%')
     st.metric("Log-scale R²",       f"{stats['r2_log']:.4f}")
     st.caption("Metrics on held-out 20 % test set")
 
