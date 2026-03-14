@@ -48,7 +48,7 @@ with st.sidebar:
     st.metric("R² (actual sales)",  f"{stats['r2_actual']:.4f}")
     st.metric("RMSE (actual sales)", f"{stats['rmse_actual']:,.0f} €")
     st.metric("MAE (actual sales)",  f"{stats['mae_actual']:,.0f} €")
-    st.metric("MAPE",               f"{stats['mape']/100000000:.2f}%")
+    st.metric("MAPE",               f"{stats['mape']:.2f} %")
     st.metric("Log-scale R²",       f"{stats['r2_log']:.4f}")
     st.caption("Metrics on held-out 20 % test set")
 
@@ -179,33 +179,5 @@ with tab2:
 with tab3:
     st.subheader("About this project")
     st.markdown("""
-**Dataset**: Rossmann Store Sales (Kaggle)  
-**Target**: Daily store sales (log-transformed during training)  
-**Model**: XGBoost Regressor  
 
-### Pipeline summary
-1. Merge `train.csv` + `store.csv` on `Store`
-2. Parse `Date` → Year / Month / Day / WeekOfYear / DayName
-3. Drop closed-store rows (`Open == 0`)
-4. Fill missing competition & promo fields
-5. One-hot encode: StoreType, Assortment, StateHoliday, PromoInterval, DayName
-6. Log-transform target (`log1p`)
-7. Train XGBoost (500 trees, lr=0.05, depth=6)
-8. Evaluate on 20 % hold-out set
-
-### Files needed for deployment
-| File | Purpose |
-|------|---------|
-| `app.py` | This Streamlit app |
-| `xgb_model.pkl` | Trained XGBoost model |
-| `feature_columns.pkl` | Ordered feature list (alignment) |
-| `model_stats.pkl` | Evaluation metrics |
-| `actual_vs_predicted.png` | Evaluation plot (optional) |
-| `feature_importance.png` | Importance plot (optional) |
-
-### Run locally
-```bash
-pip install streamlit xgboost pandas numpy joblib
-streamlit run app.py
-```
 """)
