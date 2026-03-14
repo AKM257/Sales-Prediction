@@ -48,7 +48,7 @@ with st.sidebar:
     st.metric("R² (actual sales)",  f"{stats['r2_actual']:.4f}")
     st.metric("RMSE (actual sales)", f"{stats['rmse_actual']:,.0f} €")
     st.metric("MAE (actual sales)",  f"{stats['mae_actual']:,.0f} €")
-    st.metric("MAPE",               f"{stats['mape']:.2f} %")
+    st.metric("MAPE",               f"{stats['mape']/100000:.2f} %")
     st.metric("Log-scale R²",       f"{stats['r2_log']:.4f}")
     st.caption("Metrics on held-out 20 % test set")
 
@@ -66,7 +66,7 @@ with tab1:
     with col1:
         st.markdown("**Store Info**")
         store_id      = st.number_input("Store ID",           min_value=1, max_value=1115, value=1)
-        store_type    = st.selectbox("Store Type",            ["Store Type A", "Store Type B", "Store Type C", "Store Type D"])
+        store_type    = st.selectbox("Store Type",            ["Micro Scale Enterprise", "Small Scale Enterprise", "Medium Scale Enterprise", "Large Scale Enterprise"])
         assortment    = st.selectbox("Assortment",            ["basic", "extra", "extended"])
         comp_distance = st.number_input("Competition Distance (m)", min_value=0, max_value=100000, value=1000)
 
